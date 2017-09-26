@@ -9,26 +9,27 @@ using System.Text;
 namespace WcfREST
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-    [ServiceContract]
+    [ServiceContract] 
     public interface IService1
     {
 
-
         [OperationContract]
-        string GetData(int value);
+        [WebInvoke(Method = "Get", //http metode, her bruger vi get
+            RequestFormat = WebMessageFormat.Json, //hvilket format vi ønsker at sende ud
+            ResponseFormat = WebMessageFormat.Json, //hvilket format vi ønsker at sende ind
+            UriTemplate = "/Ben" //eks ligesmo vi gjorde i api/person
+        )]
 
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
-
-        // TODO: Add your service operations here
+        //metode
+        String GetSomething(String str);
 
 
-        //----ANNOTATION----
-        //[OperationContract]
-        ////hver enkelt metode
-
+        //----NOTER: ANNOTATION----
         //[ServiceContract]
         ////Hele interface
+
+        //[OperationContract]
+        ////hver enkelt metode
 
         //[WebInvoke]
         ////metode
@@ -38,25 +39,4 @@ namespace WcfREST
     }
 
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
-    }
 }

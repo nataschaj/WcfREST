@@ -12,27 +12,15 @@ namespace WcfREST
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
-
-
-
-        
-
-        public string GetData(int value)
+        /// <summary>
+        /// implementerer metoden fra interface
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public string GetSomething (string str)
         {
-            return string.Format("You entered: {0}", value);
+            return str + " har ben"; //når man kører kan man skrive evt et navn ind i value og teksten bliver eks. tas har ben.
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
-        }
     }
 }
